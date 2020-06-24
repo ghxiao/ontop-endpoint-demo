@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ontop Endpoint Demo</title>
+</head>
+<body>
+
+<table id="myList">
+    <tr>
+    <th>name</th>
+    <th>geom</th>
+    </tr>
+</table>
+
+<script>
+    class SPARQLClient {
+        constructor(endpoint) {
+            this.endpoint = endpoint;
+        }
+
+        execute(sparql) {
+
+            console.log(sparql);
+
+            const requestBody = "query=" + encodeURIComponent(sparql) +
+                "&Accept=" + encodeURIComponent('application/sparql-results+json');
+
+            return fetch(this.endpoint, {
+                method: 'POST',
+                mode: 'cors',
+                headers: new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                }),
+                body: requestBody,
+            }).then(response => response.json());
+        }
+    }
+
+    // Access to fetch at 'http://testbed.inode.igd.fraunhofer.de:18000/sparql' from origin 'http://localhost:63342' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+    //    const client = new SPARQLClient("http://testbed.inode.igd.fraunhofer.de:18000/sparql");
+
+    const client = new SPARQLClient("https://sparql.opendatahub.bz.it/sparql");
+
+    const query = `PREFIX schema: <http://schema.org/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX : <http://noi.example.org/ontology/odh#>
+
+SELECT ?pos ?posLabel
+WHERE {
+  ?p a :Pizzeria ;
+     geo:asWKT ?pos ;
+     schema:name ?posLabel ;
+     schema:geo ?geo .
+  FILTER (lang(?posLabel) = 'it')
+  }
+  LIMIT 100`;
+
+    client.execute(query)
+        .then(r => r.results.bindings)
+        .then(
+            rs => rs.map(r => `<tr><td>${r.posLabel.value}</td> <td> ${r.pos.value}</td></tr>`)
+        )
+        .then(
+            //   result => console.log(result)
+            rs => rs.forEach(
+                r => {
+                    document.getElementById("myList").innerHTML += r;
+                }
+            )
+        )
+
+
+</script>
+</body>
+</html>
