@@ -20,7 +20,7 @@ public class EndpointDemo {
                     "SELECT ?h ?pos ?posLabel ?posColor\n" +
                     "WHERE {\n" +
                     "  ?h a schema:LodgingBusiness ;\n" +
-                    "     geo:asWKT ?pos ;\n" +
+                    "     geo:defaultGeometry/geo:asWKT ?pos  ;\n" +
                     "     schema:name ?posLabel ;\n" +
                     "     schema:address ?a .\n" +
                     "  # ?a schema:postalCode \"39100\" . # Uncomment for Bolzano only\n" +

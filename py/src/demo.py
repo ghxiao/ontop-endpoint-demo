@@ -8,7 +8,7 @@ PREFIX : <http://noi.example.org/ontology/odh#>
 SELECT ?pos ?posLabel
 WHERE {
   ?p a :Pizzeria ;
-     geo:asWKT ?pos ;
+     geo:defaultGeometry/geo:asWKT ?pos  ;
      schema:name ?posLabel ;
      schema:geo ?geo .
   FILTER (lang(?posLabel) = 'it')
