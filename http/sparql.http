@@ -1,6 +1,6 @@
-POST https://sparql.opendatahub.bz.it/sparql HTTP/1.1
+POST https://opendatahub.ontopic.dev/portal/sparql HTTP/1.1
 Accept: application/sparql-results+json
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 
-query=PREFIX%20schema%3A%20%3Chttp%3A%2F%2Fschema.org%2F%3E%0APREFIX%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0APREFIX%20%3A%20%3Chttp%3A%2F%2Fnoi.example.org%2Fontology%2Fodh%23%3E%0A%0ASELECT%20%3Fpos%20%3FposLabel%0AWHERE%20%7B%0A%20%20%3Fp%20a%20%3APizzeria%20%3B%0A%20%20%20%20%20geo%3AdefaultGeometry%2Fgeo%3AasWKT%20%3Fpos%20%20%3B%0A%20%20%20%20%20schema%3Aname%20%3FposLabel%20%3B%0A%20%20%20%20%20schema%3Ageo%20%3Fgeo%20.%0A%20%20FILTER%20%28lang%28%3FposLabel%29%20%3D%20%27it%27%29%0A%20%20%7D%0A%20%20LIMIT%20100
+query=PREFIX%20schema%3A%20%3Chttp%3A%2F%2Fschema.org%2F%3E%0APREFIX%20geo%3A%20%3Chttp%3A%2F%2Fwww.opengis.net%2Font%2Fgeosparql%23%3E%0APREFIX%20%3A%20%3Chttp%3A%2F%2Fnoi.example.org%2Fontology%2Fodh%23%3E%0A%0ASELECT%20%3Fpos%20%3FposLabel%0AWHERE%20%7B%0A%20%20%3Fp%20a%20%3APizzeria%20%3B%0A%20%20%20%20%20geo%3AdefaultGeometry%2Fgeo%3AasWKT%20%3Fpos%20%3B%0A%20%20%20%20%20schema%3Aname%20%3FposLabel%20%3B%0A%23%20%20%20%20%20schema%3Ageo%20%3Fgeo%20.%0A%20%20FILTER%20(lang(%3FposLabel)%20%3D%20'it')%0A%20%20%7D%0A%20%20LIMIT%20100&Accept=application%2Fsparql-results%2Bjson
 #

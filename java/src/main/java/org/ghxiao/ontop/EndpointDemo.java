@@ -10,7 +10,7 @@ import org.eclipse.rdf4j.repository.sparql.SPARQLRepository;
 
 public class EndpointDemo {
     public static void main(String[] args) {
-        String sparqlEndpoint = "https://sparql.opendatahub.bz.it/sparql";
+        String sparqlEndpoint = "https://opendatahub.ontopic.dev/portal/sparql";
         Repository repo = new SPARQLRepository(sparqlEndpoint);
 
         try (RepositoryConnection conn = repo.getConnection()) {

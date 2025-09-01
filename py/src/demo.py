@@ -1,5 +1,5 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
-sparql = SPARQLWrapper("https://sparql.opendatahub.bz.it/sparql")
+sparql = SPARQLWrapper("https://opendatahub.ontopic.dev/portal/sparql")
 q = """
 PREFIX schema: <http://schema.org/>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
